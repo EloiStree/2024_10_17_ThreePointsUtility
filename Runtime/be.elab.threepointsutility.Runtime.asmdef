@@ -1,0 +1,18 @@
+{
+    "name": "be.elab.threepointsutility",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f7f8409ad7621d64dbe987400afe7e83",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:1e098c5f2edd59f478e45c5cf979df88"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
