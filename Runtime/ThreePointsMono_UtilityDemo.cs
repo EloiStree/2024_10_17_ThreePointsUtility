@@ -37,9 +37,9 @@ public class ThreePointsMono_UtilityDemo : MonoBehaviour
 
     private void Refresh()
     {
-        m_angleAsString = ThreePointUtility.GetStringOfAnglesInDegree(m_triangle);
-        m_distanceAsString = ThreePointUtility.GetStringOfDistancesInCm(m_triangle);
-        m_isPerpendicularMiddle = ThreePointUtility.IsPerpendicularAtMiddlePoint(m_triangle, 10);
+        m_angleAsString = ThreePointsUtility.GetStringOfAnglesInDegree(m_triangle);
+        m_distanceAsString = ThreePointsUtility.GetStringOfDistancesInCm(m_triangle);
+        m_isPerpendicularMiddle = ThreePointsUtility.IsPerpendicularAtMiddlePoint(m_triangle, 10);
     }
 }
 

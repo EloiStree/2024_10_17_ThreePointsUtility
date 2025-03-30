@@ -63,7 +63,7 @@ namespace Eloi.ThreePoints
     (start.y + middle.y + end.y) / 3,
     (start.z + middle.z + end.z) / 3
 );
-        ThreePointUtility.GetCrossDirection(m_triangle, out Vector3 crossDirection, m_invokeOnStart);
+        ThreePointsUtility.GetCrossDirection(m_triangle, out Vector3 crossDirection, m_invokeOnStart);
         GameObject go = Instantiate(m_prefab, centroid, Quaternion.identity);
         go.transform.up = crossDirection;
 

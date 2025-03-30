@@ -3,8 +3,7 @@ using UnityEngine.Events;
 namespace Eloi.ThreePoints
 {
 
-
-public class ThreePointsMono_AwakeDestroyEvents : MonoBehaviour{
+    public class ThreePointsMono_AwakeDestroyEvents : MonoBehaviour{
 
     public UnityEvent m_awake;
     public UnityEvent m_start;
