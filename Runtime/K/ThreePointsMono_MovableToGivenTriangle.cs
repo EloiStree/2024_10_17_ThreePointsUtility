@@ -6,11 +6,21 @@ namespace Eloi.ThreePoints
 {
     public class ThreePointsMono_MovableToGivenTriangle : MonoBehaviour {
 
+        public Transform[] m_parentsWithMovable;
         public List<GameObject> m_shouldBeMovable;
         public List<ThreePointsMono_MovableTransform3> m_movableFound;
         public ThreePointsTriangleDefault m_receivedTriangle;
 
         public float m_tolerance = 0.07f;
+        public bool m_loadOnAwake = true;
+
+        private void Awake()
+        {
+            if (m_loadOnAwake)
+            {
+                LookForMovableInChildren();
+            }
+        }
         public void SetWith(I_ThreePointsGet triangle)
         {
             m_receivedTriangle = new ThreePointsTriangleDefault(triangle);
@@ -35,13 +45,24 @@ namespace Eloi.ThreePoints
                 }
             }
         }
-
-        [ContextMenu("Lookr for Movable")]
+ 
+        [ContextMenu("Look for Movable")]
         public void LookForMovableInChildren() {
 
             m_shouldBeMovable.Clear();
             m_movableFound.Clear();
             m_shouldBeMovable.AddRange(GetComponentsInChildren<ThreePointsMono_MovableTransform3>().Select(a => a.gameObject));
+
+            foreach (var item in m_parentsWithMovable)
+            {
+                if (item == null) continue;
+                ThreePointsMono_MovableTransform3[] found = item.GetComponentsInChildren<ThreePointsMono_MovableTransform3>();
+                if (found != null)
+                {
+                    m_shouldBeMovable.AddRange(found.Select(a => a.gameObject));
+                }
+            }
+
             RefreshList();
         }
 

@@ -166,13 +166,13 @@ namespace Eloi.ThreePoints
             cross = Vector3.Cross(middle - start, middle - end);
         }
 
-        internal static float GetBiggestAngle(I_ThreePointsDistanceAngleGet computed)
+        public static float GetBiggestAngle(I_ThreePointsDistanceAngleGet computed)
         {
             GetOrderedAngle(computed, out float maxAngle, out float middleAngle, out float minAngle);
             return maxAngle;
         }
 
-        internal static void GetOrderedEdgeDistance(I_ThreePointsDistanceAngleGet computed, out float max, out float middle, out float min)
+        public static void GetOrderedEdgeDistance(I_ThreePointsDistanceAngleGet computed, out float max, out float middle, out float min)
         {
             computed.GetSegmentDistance(ThreePointSegment.StartMiddle, out float distance0);
             computed.GetSegmentDistance(ThreePointSegment.MiddleEnd, out float distance1);
@@ -184,7 +184,7 @@ namespace Eloi.ThreePoints
             max = distances[2];
         }
 
-        internal static void GetOrderedAngle(I_ThreePointsDistanceAngleGet computed, out float maxAngle, out float middleAngle, out float minAngle)
+        public static void GetOrderedAngle(I_ThreePointsDistanceAngleGet computed, out float maxAngle, out float middleAngle, out float minAngle)
         {
             computed.GetCornerAngle(ThreePointCorner.Start, out float angle);
             computed.GetCornerAngle(ThreePointCorner.Middle, out float angle2);
@@ -195,6 +195,12 @@ namespace Eloi.ThreePoints
             middleAngle = angles[1];
             maxAngle = angles[2];
 
+
+        }
+        public static void GetOrderedAngle(I_ThreePointsGet triangle, out float maxAngle, out float middleAngle, out float minAngle)
+        {
+            ThreePointsTriangleDefault tri = new ThreePointsTriangleDefault(triangle);
+            GetOrderedAngle(tri, out maxAngle, out middleAngle, out minAngle);
 
         }
 
@@ -372,6 +378,39 @@ namespace Eloi.ThreePoints
             GetOrderedEdgeDistance(computed, out float max, out float middle, out float min);
             minRadius = StaitcTriangleCompute.CalculateInradius(max, middle, min);
             maxRadius = StaitcTriangleCompute.CalculateCircumradius(max, middle, min);
+        }
+
+        public static void AreSimilar(I_ThreePointsGet a, I_ThreePointsGet b,
+            float similarityThresholdMillimeter,
+            float similarityThresholdDegree, 
+            out bool areSimilar)
+        {
+            areSimilar = false;
+            if (a == null)
+                return;
+            if (b == null)
+                return;
+            GetBordersTotalLenght(a, out float totalLenghtA);
+            GetBordersTotalLenght(b, out float totalLenghtB);
+            if (Mathf.Abs(totalLenghtA - totalLenghtB) > similarityThresholdMillimeter)
+                return;
+
+            GetOrderedAngle(a, out float maxAngleA, out float middleAngleA, out float minAngleA);
+            GetOrderedAngle(b, out float maxAngleB, out float middleAngleB, out float minAngleB);
+            if (Mathf.Abs(maxAngleA - maxAngleB) > similarityThresholdDegree)
+                return;
+            if (Mathf.Abs(middleAngleA - middleAngleB) > similarityThresholdDegree)
+                return;
+            if (Mathf.Abs(minAngleA - minAngleB) > similarityThresholdDegree)
+                return;
+            areSimilar = true;
+        }
+
+
+        private static void GetBordersTotalLenght(I_ThreePointsGet a, out float totalLenght)
+        {
+            a.GetThreePoints(out Vector3 startA, out Vector3 middleA, out Vector3 endA);
+            totalLenght = Vector3.Distance(startA, middleA) + Vector3.Distance(middleA, endA) + Vector3.Distance(startA, endA);
         }
     }
 }
