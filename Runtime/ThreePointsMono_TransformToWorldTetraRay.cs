@@ -1,12 +1,10 @@
 using Eloi.ThreePoints;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Eloi.ThreePoints {
-
 
     public static class TetraRayDrawUtility
     { 
