@@ -122,7 +122,6 @@ public struct STRUCT_TetraRayLit
     /// Represent  the position from the boot a perpendicular line to the longest side of the triangle on the short side of the triangle to the right
     /// </summary>
     public Vector3 m_localPositionFromFoot;
-
     public Quaternion m_localRotationFromFoot;
 }
 
