@@ -14,10 +14,10 @@ namespace Eloi.ThreePoints
         }
 
         // Function to calculate the circumradius (R)
-        public static float CalculateCircumradius(float a, float b, float c)
+        public static float CalculateCircumRadius(float a, float b, float c)
         {
             float area = CalculateArea(a, b, c);
-            if (area == 0) return 0; // Avoid division by zero
+            if (area == 0) return 0; 
             return (a * b * c) / (4f * area);
         }
 
@@ -26,7 +26,7 @@ namespace Eloi.ThreePoints
         {
             float area = CalculateArea(a, b, c);
             float s = (a + b + c) / 2f;
-            if (s == 0) return 0; // Avoid division by zero
+            if (s == 0) return 0; 
             return area / s;
 
         }

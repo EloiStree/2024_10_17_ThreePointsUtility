@@ -377,7 +377,7 @@ namespace Eloi.ThreePoints
 
             GetOrderedEdgeDistance(computed, out float max, out float middle, out float min);
             minRadius = StaitcTriangleCompute.CalculateInradius(max, middle, min);
-            maxRadius = StaitcTriangleCompute.CalculateCircumradius(max, middle, min);
+            maxRadius = StaitcTriangleCompute.CalculateCircumRadius(max, middle, min);
         }
 
         public static void AreSimilar(I_ThreePointsGet a, I_ThreePointsGet b,

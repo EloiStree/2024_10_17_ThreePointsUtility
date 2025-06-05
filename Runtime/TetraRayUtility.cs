@@ -232,7 +232,13 @@ namespace Eloi.ThreePoints {
 
             return rotationQuaternion;
         }
-        public static void GetLocalToWorld_DirectionalPoint(in Vector3 localPosition, in Quaternion localRotation, in Vector3 positionReference, in Quaternion rotationReference, out Vector3 worldPosition, out Quaternion worldRotation, bool inverse=false)
+        public static void GetLocalToWorld_DirectionalPoint(
+            in Vector3 localPosition,
+            in Quaternion localRotation, 
+            in Vector3 positionReference,
+            in Quaternion rotationReference,
+            out Vector3 worldPosition,
+            out Quaternion worldRotation, bool inverse=false)
         {
             worldRotation =inverse? localRotation* rotationReference : rotationReference*localRotation;
             worldPosition = (rotationReference * localPosition) + (positionReference);
